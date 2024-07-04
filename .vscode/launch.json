@@ -1,0 +1,138 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debugger: train_objfeatvqvae.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/train_objfeatvqvae.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/threedfront_objfeat_vqvae.yaml",
+                "--tag",
+                "threedfront_objfeat_vqvae"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+        {
+            "name": "Debugger: reconstruct_objfeatvqvae.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/reconstruct_objfeatvqvae.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/threedfront_objfeat_vqvae.yaml",
+                "--tag",
+                "threedfront_objfeat_vqvae",
+                "--checkpoint_epoch",
+                "-1"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+        {
+            "name": "Debugger: train_sg2sc.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/train_sg2sc.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/bedroom_sg2sc_diffusion_objfeat.yaml",
+                "--tag",
+                "bedroom_sg2scdiffusion_objfeat",
+                "--fvqvae_tag",
+                "threedfront_objfeat_vqvae"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+        {
+            "name": "Debugger: generate_sg2sc.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/generate_sg2sc.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/bedroom_sg2sc_diffusion_objfeat.yaml",
+                "--tag",
+                "bedroom_sg2scdiffusion_objfeat",
+                "--fvqvae_tag",
+                "threedfront_objfeat_vqvae",
+                "--checkpoint_epoch",
+                "-1",
+                "--cfg_scale",
+                "1.0",
+                "--n_scenes",
+                "0"
+
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+        {
+            "name": "Debugger: train_sg.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/train_sg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/bedroom_sg2sc_diffusion_objfeat.yaml",
+                "--tag",
+                "bedroom_sgdiffusion_vq_objfeat",
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+        {
+            "name": "Debugger: generate_sg.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/cto_auraml_com/Development/InstructScene/src/generate_sg.py",
+            "console": "integratedTerminal",
+            "args": [
+                "configs/bedroom_sg_diffusion_vq_objfeat.yaml",
+
+                "--tag",
+                "bedroom_sgdiffusion_vq_objfeat",
+
+                "--fvqvae_tag",
+                "threedfront_objfeat_vqvae",
+
+                "--sg2sc_tag",
+                "bedroom_sg2scdiffusion_objfeat",
+
+                "--checkpoint_epoch",
+                "-1",
+
+                "--cfg_scale",
+                "1.0",
+
+                "--sg2sc_cfg_scale",
+                "1.0",
+
+                "--n_scenes",
+                "0"
+
+                // --n_scenes
+                // "5",
+                // "--visualize",
+                // "--verbose",
+                // "--resolution",
+                // "1024",
+
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            }
+        },
+    ]
+}
