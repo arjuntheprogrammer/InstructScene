@@ -16,6 +16,8 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import models
 from torchvision.models.alexnet import AlexNet_Weights
 
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.utils.util import *
 from src.data.splits_builder import CSVSplitsBuilder
 from src.data.threed_front import CachedThreedFront

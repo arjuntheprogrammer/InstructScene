@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from diffusers.training_utils import EMAModel
 
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.utils.util import *
 from src.utils.visualize import *
 from src.data import filter_function, get_dataset_raw_and_encoded, get_encoded_dataset
@@ -357,7 +359,7 @@ def main():
             e_mask1 = obj_masks.unsqueeze(1).unsqueeze(-1)  # (bs, 1, n, 1)
             e_mask2 = obj_masks.unsqueeze(2).unsqueeze(-1)  # (bs, n, 1, 1)
             edges = edges * e_mask1 * e_mask2  # mask out edges to non-existent objects
-            edges_negative = edges[..., 
+            edges_negative = edges[...,
                 [*range(dataset.n_predicate_types//2, dataset.n_predicate_types)] + \
                 [*range(0, dataset.n_predicate_types//2)] + \
                 [*range(dataset.n_predicate_types, edges.shape[-1])]
@@ -483,7 +485,7 @@ def main():
                     name1 = dataset.object_types[c1_id]
                     for other_idx in range(idx+1, len(obj_class_ids)):
                         if obj_class_ids[other_idx] == dataset.n_object_types:  # empty object
-                            continue 
+                            continue
                         c2_id = obj_class_ids[other_idx]
                         t2 = bbox_params_t[i, other_idx, cls_dim:cls_dim+3]
                         r2 = bbox_params_t[i, other_idx, cls_dim+6]

@@ -10,6 +10,8 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from diffusers.training_utils import EMAModel
 
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.utils.util import *
 from src.utils.visualize import *
 from src.data import filter_function, get_encoded_dataset, get_dataset_raw_and_encoded
@@ -326,7 +328,7 @@ def main():
                 name1 = dataset.object_types[c1_id]
                 for other_idx in range(idx+1, len(obj_class_ids)):
                     if obj_class_ids[other_idx] == dataset.n_object_types:  # empty object
-                        continue 
+                        continue
                     c2_id = obj_class_ids[other_idx]
                     t2 = bbox_params_t[i, other_idx, cls_dim:cls_dim+3]
                     r2 = bbox_params_t[i, other_idx, cls_dim+6]
